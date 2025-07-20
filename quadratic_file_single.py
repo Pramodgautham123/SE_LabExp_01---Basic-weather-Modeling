@@ -1,3 +1,5 @@
+import math
+
 with open("input.txt", "r") as file:
     line = file.readline()
     a, b, c = map(float, line.split())
@@ -9,3 +11,4 @@ if D >= 0:
     print("Roots:", x1, x2)
 else:
     print("No real roots")
+
