@@ -1,0 +1,88 @@
+import math
+import os
+
+def solve_quadratic(a, b, c):
+    """Solves ax² + bx + c = 0 and prints results."""
+    if a == 0:
+        print("Not a quadratic equation (a = 0).")
+        return
+    D = b**2 - 4*a*c
+    print(f"\nEquation: {a}x² + {b}x + {c} = 0")
+    print(f"Discriminant (D) = {D}")
+    if D > 0:
+        x1 = (-b + math.sqrt(D)) / (2*a)
+        x2 = (-b - math.sqrt(D)) / (2*a)
+        print("Roots are real and distinct:", x1, x2)
+    elif D == 0:
+        x = -b / (2*a)
+        print("Roots are real and equal:", x)
+    else:
+        print("No real roots.")
+
+def stage1_hardcoded():
+    print("\n--- Stage 1: Hardcoded Coefficients ---")
+    a, b, c = 1, -3, 2
+    solve_quadratic(a, b, c)
+
+def stage2_keyboard_input():
+    print("\n--- Stage 2: Keyboard Input ---")
+    try:
+        a = float(input("Enter a: "))
+        b = float(input("Enter b: "))
+        c = float(input("Enter c: "))
+        solve_quadratic(a, b, c)
+    except ValueError:
+        print("Invalid input. Please enter numbers.")
+
+def stage3_file_single():
+    print("\n--- Stage 3: Read Single Set from File ---")
+    filename = "input.txt"
+    if not os.path.exists(filename):
+        print(f"Error: '{filename}' not found. Please create the file with 'a b c' on one line.")
+        return
+    try:
+        with open(filename, "r") as file:
+            line = file.readline().strip()
+            a, b, c = map(float, line.split())
+            solve_quadratic(a, b, c)
+    except Exception as e:
+        print("Error reading file:", e)
+
+def stage4_file_multiple():
+    print("\n--- Stage 4: Read Multiple Sets from File ---")
+    filename = "input.txt"
+    if not os.path.exists(filename):
+        print(f"Error: '{filename}' not found. Please create the file with multiple 'a b c' lines.")
+        return
+    try:
+        with open(filename, "r") as file:
+            for line in file:
+                if line.strip():
+                    a, b, c = map(float, line.strip().split())
+                    solve_quadratic(a, b, c)
+    except Exception as e:
+        print("Error reading file:", e)
+
+# --- Main Menu ---
+while True:
+    print("\nChoose a stage to run:")
+    print("1. Stage 1 – Hardcoded coefficients")
+    print("2. Stage 2 – Keyboard input")
+    print("3. Stage 3 – Single set from file")
+    print("4. Stage 4 – Multiple sets from file")
+    print("5. Exit")
+
+    choice = input("Enter your choice (1-5): ")
+    if choice == '1':
+        stage1_hardcoded()
+    elif choice == '2':
+        stage2_keyboard_input()
+    elif choice == '3':
+        stage3_file_single()
+    elif choice == '4':
+        stage4_file_multiple()
+    elif choice == '5':
+        print("Exiting program. Goodbye!")
+        break
+    else:
+        print("Invalid choice. Please try again.")
