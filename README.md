@@ -12,5 +12,3 @@ Here’s a short **4-point features list** with emojis for your project:
 * 🧮 **Educational Focus** – Demonstrates step-by-step development of a quadratic solver for applied weather modeling.
 
 ---
-
-Would you like me to give you a **matching “Usage” section** (with emojis) for your README?
